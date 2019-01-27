@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Designer" representedClassName="Designer" parentEntity="Employee" syncable="YES">
+        <relationship name="boss" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manager" inverseName="headForDesigners" inverseEntity="Manager" syncable="YES"/>
+        <relationship name="mainTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="designers" inverseEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Developer" representedClassName="Developer" parentEntity="Employee" syncable="YES">
+        <attribute name="anotherTask" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="boss" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manager" inverseName="headFordevelopers" inverseEntity="Manager" syncable="YES"/>
+        <relationship name="mainTask" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="developers" inverseEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Employee" representedClassName="Employee" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="xp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Manager" representedClassName="Manager" parentEntity="Employee" syncable="YES">
+        <attribute name="customer" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="headForDesigners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Designer" inverseName="boss" inverseEntity="Designer" syncable="YES"/>
+        <relationship name="headFordevelopers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Developer" inverseName="boss" inverseEntity="Developer" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="manager" inverseEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="deadLine" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Task" representedClassName="Task" syncable="YES">
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="designers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Designer" inverseName="mainTask" inverseEntity="Designer" syncable="YES"/>
+        <relationship name="developers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Developer" inverseName="mainTask" inverseEntity="Developer" syncable="YES"/>
+        <relationship name="manager" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manager" inverseName="tasks" inverseEntity="Manager" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Project" positionX="-1766.87109375" positionY="-10905.7265625" width="128" height="73"/>
+        <element name="Task" positionX="-2019.62109375" positionY="-11068.83984375" width="128" height="133"/>
+        <element name="Employee" positionX="-1792.0703125" positionY="-11281.21484375" width="128" height="88"/>
+        <element name="Developer" positionX="-1770.4375" positionY="-11053.03515625" width="128" height="88"/>
+        <element name="Designer" positionX="-1737.79296875" positionY="-11391.8203125" width="128" height="73"/>
+        <element name="Manager" positionX="-1425.046875" positionY="-11051.96875" width="128" height="103"/>
+    </elements>
+</model>
