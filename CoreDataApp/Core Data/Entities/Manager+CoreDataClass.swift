@@ -12,5 +12,20 @@ import CoreData
 
 @objc(Manager)
 public class Manager: Employee {
+    
+    //MARK: Geting all data about managers from database
+    
+    class func fetchAll() -> [Manager] {
+        let context: NSManagedObjectContext = CoreDataStack.shared.persistantContainer.viewContext
+        let request: NSFetchRequest<Manager> = fetchRequest()
+        var managers: [Manager] = []
+        
+        do {
+            managers = try context.fetch(request)
+        } catch {
+            debugPrint(error)
+        }
+        return managers
+    }
 
 }

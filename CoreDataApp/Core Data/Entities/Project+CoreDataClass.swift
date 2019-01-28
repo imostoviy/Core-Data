@@ -12,5 +12,19 @@ import CoreData
 
 @objc(Project)
 public class Project: NSManagedObject {
-
+    
+    //MARK: Getting data about projects
+    
+    class func fetchAll() -> [Project] {
+        let context: NSManagedObjectContext = CoreDataStack.shared.persistantContainer.viewContext
+        let request: NSFetchRequest<Project> = fetchRequest()
+        var projects: [Project] = []
+        
+        do {
+            projects = try context.fetch(request)
+        } catch {
+            debugPrint(request)
+        }
+        return projects
+    }
 }
