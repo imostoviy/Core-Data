@@ -14,8 +14,11 @@
 		844EBF3721FE21B100EEEF3D /* Manager+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3121FE21B100EEEF3D /* Manager+CoreDataClass.swift */; };
 		844EBF3821FE21B100EEEF3D /* Manager+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3221FE21B100EEEF3D /* Manager+CoreDataProperties.swift */; };
 		844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */; };
+		8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */; };
+		8483B42D2200DF4F00BE0C9A /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */; };
+		84A47A572200625E0015FB3E /* UIPickerForBoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47A562200625E0015FB3E /* UIPickerForBoss.swift */; };
 		84BCBC6A21FF58B700164D30 /* ParentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */; };
-		84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell copy.swift */; };
+		84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell.swift */; };
 		84BCBC7521FF739B00164D30 /* DesignersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC7321FF739B00164D30 /* DesignersTableViewCell.swift */; };
 		84BCBC7621FF739B00164D30 /* DesignersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BCBC7421FF739B00164D30 /* DesignersTableViewCell.xib */; };
 		84BCBC7921FF7CE900164D30 /* ManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC7721FF7CE900164D30 /* ManagerTableViewCell.swift */; };
@@ -43,9 +46,12 @@
 		844EBF3121FE21B100EEEF3D /* Manager+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manager+CoreDataClass.swift"; sourceTree = "<group>"; };
 		844EBF3221FE21B100EEEF3D /* Manager+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manager+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
+		8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerForTask.swift; sourceTree = "<group>"; };
+		8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		84A47A562200625E0015FB3E /* UIPickerForBoss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerForBoss.swift; sourceTree = "<group>"; };
 		84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTableViewController.swift; sourceTree = "<group>"; };
-		84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DevelopersTableViewCell copy.swift"; sourceTree = "<group>"; };
-		84BCBC7121FF6FCB00164D30 /* DevelopersTableViewCell copy.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "DevelopersTableViewCell copy.xib"; sourceTree = "<group>"; };
+		84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewCell.swift; sourceTree = "<group>"; };
+		84BCBC7121FF6FCB00164D30 /* DevelopersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevelopersTableViewCell.xib; sourceTree = "<group>"; };
 		84BCBC7321FF739B00164D30 /* DesignersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignersTableViewCell.swift; sourceTree = "<group>"; };
 		84BCBC7421FF739B00164D30 /* DesignersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DesignersTableViewCell.xib; sourceTree = "<group>"; };
 		84BCBC7721FF7CE900164D30 /* ManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,11 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8483B42E2200EDB700BE0C9A /* UIPickers */ = {
+			isa = PBXGroup;
+			children = (
+				84A47A562200625E0015FB3E /* UIPickerForBoss.swift */,
+				8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */,
+			);
+			name = UIPickers;
+			sourceTree = "<group>";
+		};
 		84BCBC6F21FF683300164D30 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell copy.swift */,
-				84BCBC7121FF6FCB00164D30 /* DevelopersTableViewCell copy.xib */,
+				84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell.swift */,
+				84BCBC7121FF6FCB00164D30 /* DevelopersTableViewCell.xib */,
 				84BCBC7321FF739B00164D30 /* DesignersTableViewCell.swift */,
 				84BCBC7421FF739B00164D30 /* DesignersTableViewCell.xib */,
 				84BCBC7721FF7CE900164D30 /* ManagerTableViewCell.swift */,
@@ -128,6 +143,8 @@
 				844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */,
 				84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */,
 				84BCBC7B21FF841200164D30 /* DeveloperTableViewController.swift */,
+				8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */,
+				8483B42E2200EDB700BE0C9A /* UIPickers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -248,16 +265,19 @@
 				84EC180321F9BBA60093F879 /* Task+CoreDataClass.swift in Sources */,
 				84DFEDA521F8E19400EFF834 /* CoreDataApp.xcdatamodeld in Sources */,
 				84EC180A21F9BD920093F879 /* CoreDataStack.swift in Sources */,
+				8483B42D2200DF4F00BE0C9A /* TasksTableViewController.swift in Sources */,
 				84EC180221F9BBA60093F879 /* Project+CoreDataProperties.swift in Sources */,
-				84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell copy.swift in Sources */,
+				84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell.swift in Sources */,
 				844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */,
 				84BCBC7C21FF841200164D30 /* DeveloperTableViewController.swift in Sources */,
+				8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */,
 				844EBF3521FE21B100EEEF3D /* Developer+CoreDataClass.swift in Sources */,
 				84EC180421F9BBA60093F879 /* Task+CoreDataProperties.swift in Sources */,
 				84EC180621F9BBA60093F879 /* Employee+CoreDataProperties.swift in Sources */,
 				84EC180521F9BBA60093F879 /* Employee+CoreDataClass.swift in Sources */,
 				844EBF3321FE21B100EEEF3D /* Designer+CoreDataClass.swift in Sources */,
 				844EBF3721FE21B100EEEF3D /* Manager+CoreDataClass.swift in Sources */,
+				84A47A572200625E0015FB3E /* UIPickerForBoss.swift in Sources */,
 				84BCBC7921FF7CE900164D30 /* ManagerTableViewCell.swift in Sources */,
 				84BCBC6A21FF58B700164D30 /* ParentTableViewController.swift in Sources */,
 				84DFED9D21F8E19400EFF834 /* AppDelegate.swift in Sources */,

@@ -254,6 +254,48 @@
             </objects>
             <point key="canvasLocation" x="1961" y="250"/>
         </scene>
+        <!--CosingTasksController-->
+        <scene sceneID="gLO-6n-rIQ">
+            <objects>
+                <tableViewController storyboardIdentifier="TasksTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kpP-dv-xZk" userLabel="CosingTasksController" customClass="TasksTableViewController" customModule="CoreDataApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oDI-qc-vt8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="CXX-gE-Mcu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXX-gE-Mcu" id="TMZ-RM-nK2">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovs-Iw-7Q5">
+                                            <rect key="frame" x="21" y="11" width="333" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ovs-Iw-7Q5" firstAttribute="leading" secondItem="TMZ-RM-nK2" secondAttribute="leadingMargin" constant="5" id="JRI-ag-5yO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ovs-Iw-7Q5" secondAttribute="bottom" id="KEU-z5-8yz"/>
+                                        <constraint firstItem="Ovs-Iw-7Q5" firstAttribute="top" secondItem="TMZ-RM-nK2" secondAttribute="topMargin" id="fBe-O8-Pmz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ovs-Iw-7Q5" secondAttribute="trailing" constant="5" id="tPu-9e-d8c"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kpP-dv-xZk" id="QAY-Ad-RZ7"/>
+                            <outlet property="delegate" destination="kpP-dv-xZk" id="Eab-rB-Ayk"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cEJ-E4-gfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2897" y="340"/>
+        </scene>
         <!--Designers-->
         <scene sceneID="cdX-MQ-cSi">
             <objects>

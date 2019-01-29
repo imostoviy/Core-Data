@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import CoreData
 
 class ParentTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFunction))
     }
     
     @objc func addFunction() {}
-
+    
 }
 

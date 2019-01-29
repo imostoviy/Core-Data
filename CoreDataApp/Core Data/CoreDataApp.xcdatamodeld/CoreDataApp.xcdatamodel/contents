@@ -33,11 +33,11 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Designer" positionX="-1737.79296875" positionY="-11391.8203125" width="128" height="73"/>
+        <element name="Developer" positionX="-1770.4375" positionY="-11053.03515625" width="128" height="88"/>
+        <element name="Employee" positionX="-1792.0703125" positionY="-11281.21484375" width="128" height="88"/>
+        <element name="Manager" positionX="-1425.046875" positionY="-11051.96875" width="128" height="103"/>
         <element name="Project" positionX="-1766.87109375" positionY="-10905.7265625" width="128" height="73"/>
         <element name="Task" positionX="-2019.62109375" positionY="-11068.83984375" width="128" height="133"/>
-        <element name="Employee" positionX="-1792.0703125" positionY="-11281.21484375" width="128" height="88"/>
-        <element name="Developer" positionX="-1770.4375" positionY="-11053.03515625" width="128" height="88"/>
-        <element name="Designer" positionX="-1737.79296875" positionY="-11391.8203125" width="128" height="73"/>
-        <element name="Manager" positionX="-1425.046875" positionY="-11051.96875" width="128" height="103"/>
     </elements>
 </model>
