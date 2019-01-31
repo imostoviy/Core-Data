@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8444F2A622031B6300F70AA7 /* CustomAddTasksUIInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */; };
+		8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */; };
 		844EBF3321FE21B100EEEF3D /* Designer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2D21FE21B100EEEF3D /* Designer+CoreDataClass.swift */; };
 		844EBF3421FE21B100EEEF3D /* Designer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2E21FE21B100EEEF3D /* Designer+CoreDataProperties.swift */; };
 		844EBF3521FE21B100EEEF3D /* Developer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2F21FE21B100EEEF3D /* Developer+CoreDataClass.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddTasksUIInputView.swift; sourceTree = "<group>"; };
+		8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAddTasksUIInputViewViewController.xib; sourceTree = "<group>"; };
 		844EBF2D21FE21B100EEEF3D /* Designer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Designer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		844EBF2E21FE21B100EEEF3D /* Designer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Designer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		844EBF2F21FE21B100EEEF3D /* Developer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Developer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				849F07DE2202182C009680EE /* AddTasksTableViewController.swift */,
+				8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */,
+				8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */,
 			);
 			path = AddTasksController;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 			files = (
 				84DFEDAA21F8E19700EFF834 /* LaunchScreen.storyboard in Resources */,
 				849F07DD22020E5C009680EE /* TasksTableViewCell.xib in Resources */,
+				8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib in Resources */,
 				84DFEDA721F8E19700EFF834 /* Assets.xcassets in Resources */,
 				84BCBC7621FF739B00164D30 /* DesignersTableViewCell.xib in Resources */,
 				84DFEDA221F8E19400EFF834 /* Main.storyboard in Resources */,
@@ -318,6 +325,7 @@
 				84EC180121F9BBA60093F879 /* Project+CoreDataClass.swift in Sources */,
 				844EBF3421FE21B100EEEF3D /* Designer+CoreDataProperties.swift in Sources */,
 				84BCBC7521FF739B00164D30 /* DesignersTableViewCell.swift in Sources */,
+				8444F2A622031B6300F70AA7 /* CustomAddTasksUIInputView.swift in Sources */,
 				84EC180321F9BBA60093F879 /* Task+CoreDataClass.swift in Sources */,
 				84DFEDA521F8E19400EFF834 /* CoreDataApp.xcdatamodeld in Sources */,
 				84EC180A21F9BD920093F879 /* CoreDataStack.swift in Sources */,

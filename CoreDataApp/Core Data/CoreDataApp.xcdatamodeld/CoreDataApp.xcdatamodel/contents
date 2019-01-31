@@ -23,7 +23,7 @@
     <entity name="Project" representedClassName="Project" syncable="YES">
         <attribute name="deadLine" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>

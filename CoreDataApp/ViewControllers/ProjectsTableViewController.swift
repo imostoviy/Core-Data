@@ -14,7 +14,6 @@ class ProjectsTableViewController: ParentTableViewController {
     //MARK: Private properties
     
     @IBOutlet weak var addButton: UIButton!
-    private var tasks: [Task]?
     private lazy var action = [UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
         self?.deleteAction(indexPath: indexPath)
     })]
@@ -112,20 +111,27 @@ extension ProjectsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addTasksController = storyboard.instantiateViewController(withIdentifier: AddTasksTableViewController.identifier) as! AddTasksTableViewController
-        addTasksController.selectedTasks = {(tasks) in
+        addTasksController.tasks = {(tasks) in
             guard let tasks = tasks else { return }
-            self.tasks = tasks
+            if tasks.count == 0 { return }
+            for task in tasks {
+                self.fetchResultsController.fetchedObjects?[indexPath.row].addToTasks(task)
+            }
+            DispatchQueue.main.async {
+                do {
+                    try self.context.save()
+                } catch {
+                    debugPrint(error)
+                }
+            }
         }
         
-        guard let projectsTask = fetchResultsController.fetchedObjects?[indexPath.row].tasks else {
+        guard let project = fetchResultsController.fetchedObjects?[indexPath.row] else {
             navigationController?.pushViewController(addTasksController, animated: true)
             return
         }
-        var tasks: [Task]?
-        for task in projectsTask {
-            tasks?.append(task as! Task)
-        }
-        addTasksController.tasks = tasks
+        addTasksController.project = project
+        addTasksController.navigationItem.title = project.deadLine
         navigationController?.pushViewController(addTasksController, animated: true)
     }
     

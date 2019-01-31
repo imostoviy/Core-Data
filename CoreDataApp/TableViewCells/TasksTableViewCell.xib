@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="TaskCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="138" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="CoreDataApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="TaskCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" rowHeight="138" id="KGk-i7-Jjw" customClass="TasksTableViewCell" customModule="CoreDataApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="138"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -20,16 +20,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="auI-HM-bhl">
-                        <rect key="frame" x="21" y="16" width="278" height="106"/>
+                        <rect key="frame" x="16" y="11" width="288" height="116"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8a-DQ-h4M">
-                                <rect key="frame" x="0.0" y="0.0" width="278" height="49"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DeadLine" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5O-13-uLG">
-                                <rect key="frame" x="0.0" y="57" width="278" height="49"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5O-13-uLG">
+                                <rect key="frame" x="0.0" y="62" width="288" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,16 +38,16 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="auI-HM-bhl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="4s6-4d-iuY"/>
-                    <constraint firstItem="auI-HM-bhl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="4v4-u3-e5n"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="auI-HM-bhl" secondAttribute="trailing" constant="5" id="Yn0-JA-M0W"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="auI-HM-bhl" secondAttribute="bottom" constant="5" id="kHA-DK-rWO"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="auI-HM-bhl" secondAttribute="trailing" id="12u-1N-vhZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="auI-HM-bhl" secondAttribute="bottom" id="7PZ-nd-wIt"/>
+                    <constraint firstItem="auI-HM-bhl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="JJA-ET-1dO"/>
+                    <constraint firstItem="auI-HM-bhl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="N6F-w1-qUI"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="deadlineLabel" destination="B5O-13-uLG" id="Agc-ay-S59"/>
-                <outlet property="taskName" destination="G8a-DQ-h4M" id="nxy-29-nsC"/>
+                <outlet property="statusLabel" destination="B5O-13-uLG" id="IWe-1V-Pun"/>
+                <outlet property="taskNameLabel" destination="G8a-DQ-h4M" id="zsg-ju-Rpp"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="90.854572713643179"/>
         </tableViewCell>

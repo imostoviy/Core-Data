@@ -15,13 +15,9 @@ class TasksTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     
     static let reuseIdentifier = "TaskCell"
-    var taskName: String?
-    var status: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        taskNameLabel.text = taskName
-        statusLabel.text = status
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -9,31 +9,52 @@
 import UIKit
 import CoreData
 
-class AddTasksTableViewController: UIInputView, UITableViewDelegate, UITableViewDataSource {
+class AddTasksTableViewController: ParentTableViewController {
 
     //MARK: Properties
     
-    var tasks: [Task]?
-    var selectedTasks: (([Task]?) -> (Void))?
+    var project: Project!
+    var tasks: (([Task]?) -> (Void))?
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var action = [
         UITableViewRowAction(style: .normal, title: "Delete") { [weak self] (_, indexPath) in
         self?.delete(indexPath: indexPath)
         }
     ]
+    private lazy var fetchResultsController: NSFetchedResultsController<Task> = {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "taskName", ascending: true)]
+        request.predicate = NSPredicate(format: "project == %@", project)
+        let controller = NSFetchedResultsController<Task>(
+            fetchRequest: request,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        controller.delegate = self
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            debugPrint(error)
+        }
+        return controller
+    }()
+    
     static let identifier = "AddTasksTableView"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
+        let cell = UINib(nibName: "TasksTableViewCell", bundle: nil)
+        tableView.register(cell, forCellReuseIdentifier: TasksTableViewCell.reuseIdentifier)
     }
     
     @objc func done() {
-        selectedTasks?(tasks)
         navigationController?.popViewController(animated: true)
+        tasks?(fetchResultsController.fetchedObjects)
     }
     
-    func addFunction() {
+    override func addFunction() {
         let alert = UIAlertController(title: "Add", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Task name"
@@ -42,21 +63,29 @@ class AddTasksTableViewController: UIInputView, UITableViewDelegate, UITableView
             textField.placeholder = "Status"
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak context, weak self] _ in
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak context] _ in
             guard let context = context else { return }
-            guard let self = self else { return }
             let object = Task(context: context)
             object.taskName = alert.textFields?.first?.text
             object.status = alert.textFields?.last?.text
-            self.tasks?.append(object)
-            self.tableView.reloadData()
+            object.project = self.project
+            do {
+                try context.save()
+            } catch {
+                debugPrint(error)
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
     
     private func delete(indexPath: IndexPath) {
-        self.tasks?.remove(at: indexPath.row)
-        self.tableView.reloadData()
+        guard let object = fetchResultsController.fetchedObjects?[indexPath.row] else { return }
+        context.delete(object)
+        do {
+            try context.save()
+        } catch {
+            debugPrint(error)
+        }
     }
 
 }
@@ -69,13 +98,13 @@ extension AddTasksTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks?.count ?? 0
+        return fetchResultsController.fetchedObjects?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TasksTableViewCell.reuseIdentifier, for: indexPath) as! TasksTableViewCell
-        cell.taskName = tasks?[indexPath.row].taskName
-        cell.status = tasks?[indexPath.row].status
+        cell.taskNameLabel.text = fetchResultsController.fetchedObjects?[indexPath.row].taskName
+        cell.statusLabel.text = fetchResultsController.fetchedObjects?[indexPath.row].status
         return cell
     }
     
@@ -84,4 +113,9 @@ extension AddTasksTableViewController {
     }
 }
 
-
+//MARK: Extension NSFetchedResultsControllerDelegate
+extension AddTasksTableViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.reloadData()
+    }
+}
