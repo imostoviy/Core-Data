@@ -23,19 +23,25 @@
                         <rect key="frame" x="16" y="11" width="288" height="100"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg1-8V-CIA">
-                                <rect key="frame" x="0.0" y="0.0" width="288" height="24"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC7-fo-s7T">
-                                <rect key="frame" x="0.0" y="38" width="288" height="24"/>
+                                <rect key="frame" x="0.0" y="28.5" width="288" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNz-FG-GN7">
-                                <rect key="frame" x="0.0" y="76" width="288" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ManagerTableViewCell" text="Customer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNz-FG-GN7">
+                                <rect key="frame" x="0.0" y="57" width="288" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgT-hh-7VQ">
+                                <rect key="frame" x="0.0" y="85.5" width="288" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -55,6 +61,7 @@
                 <outlet property="customerLabel" destination="KNz-FG-GN7" id="izU-RP-q4n"/>
                 <outlet property="experienceLabel" destination="bC7-fo-s7T" id="5nU-Qx-sly"/>
                 <outlet property="fullNAmeLabel" destination="Lg1-8V-CIA" id="C1Y-Je-gYe"/>
+                <outlet property="tasksLabel" destination="SgT-hh-7VQ" id="0eC-Nm-D9X"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="189.80509745127438"/>
         </tableViewCell>

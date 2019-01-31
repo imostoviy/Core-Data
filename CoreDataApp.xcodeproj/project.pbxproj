@@ -16,6 +16,11 @@
 		844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */; };
 		8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */; };
 		8483B42D2200DF4F00BE0C9A /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */; };
+		8489FF41220190A000D82A30 /* DesignerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489FF40220190A000D82A30 /* DesignerTableViewController.swift */; };
+		8489FF442201961900D82A30 /* ManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489FF432201961900D82A30 /* ManagerTableViewController.swift */; };
+		849F07DC22020E5C009680EE /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F07DA22020E5C009680EE /* TasksTableViewCell.swift */; };
+		849F07DD22020E5C009680EE /* TasksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849F07DB22020E5C009680EE /* TasksTableViewCell.xib */; };
+		849F07DF2202182C009680EE /* AddTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F07DE2202182C009680EE /* AddTasksTableViewController.swift */; };
 		84A47A572200625E0015FB3E /* UIPickerForBoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A47A562200625E0015FB3E /* UIPickerForBoss.swift */; };
 		84BCBC6A21FF58B700164D30 /* ParentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */; };
 		84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell.swift */; };
@@ -48,6 +53,11 @@
 		844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
 		8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerForTask.swift; sourceTree = "<group>"; };
 		8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		8489FF40220190A000D82A30 /* DesignerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerTableViewController.swift; sourceTree = "<group>"; };
+		8489FF432201961900D82A30 /* ManagerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTableViewController.swift; sourceTree = "<group>"; };
+		849F07DA22020E5C009680EE /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		849F07DB22020E5C009680EE /* TasksTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TasksTableViewCell.xib; sourceTree = "<group>"; };
+		849F07DE2202182C009680EE /* AddTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTasksTableViewController.swift; sourceTree = "<group>"; };
 		84A47A562200625E0015FB3E /* UIPickerForBoss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerForBoss.swift; sourceTree = "<group>"; };
 		84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTableViewController.swift; sourceTree = "<group>"; };
 		84BCBC7021FF6FCB00164D30 /* DevelopersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +103,46 @@
 			name = UIPickers;
 			sourceTree = "<group>";
 		};
+		8489FF3E22018F7F00D82A30 /* DeveloperTebleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84BCBC7B21FF841200164D30 /* DeveloperTableViewController.swift */,
+			);
+			path = DeveloperTebleViewController;
+			sourceTree = "<group>";
+		};
+		8489FF3F22018FC300D82A30 /* ChoseTasksController */ = {
+			isa = PBXGroup;
+			children = (
+				8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */,
+			);
+			path = ChoseTasksController;
+			sourceTree = "<group>";
+		};
+		8489FF42220190DF00D82A30 /* DesignerTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8489FF40220190A000D82A30 /* DesignerTableViewController.swift */,
+			);
+			path = DesignerTableViewController;
+			sourceTree = "<group>";
+		};
+		8489FF452201961F00D82A30 /* ManagerTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8489FF432201961900D82A30 /* ManagerTableViewController.swift */,
+			);
+			path = ManagerTableViewController;
+			sourceTree = "<group>";
+		};
+		849F07E022023113009680EE /* AddTasksController */ = {
+			isa = PBXGroup;
+			children = (
+				849F07DE2202182C009680EE /* AddTasksTableViewController.swift */,
+			);
+			path = AddTasksController;
+			sourceTree = "<group>";
+		};
 		84BCBC6F21FF683300164D30 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +152,8 @@
 				84BCBC7421FF739B00164D30 /* DesignersTableViewCell.xib */,
 				84BCBC7721FF7CE900164D30 /* ManagerTableViewCell.swift */,
 				84BCBC7821FF7CE900164D30 /* ManagerTableViewCell.xib */,
+				849F07DA22020E5C009680EE /* TasksTableViewCell.swift */,
+				849F07DB22020E5C009680EE /* TasksTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -142,9 +194,12 @@
 				84DFEDA021F8E19400EFF834 /* Main.storyboard */,
 				844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */,
 				84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */,
-				84BCBC7B21FF841200164D30 /* DeveloperTableViewController.swift */,
-				8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */,
+				849F07E022023113009680EE /* AddTasksController */,
+				8489FF42220190DF00D82A30 /* DesignerTableViewController */,
+				8489FF3E22018F7F00D82A30 /* DeveloperTebleViewController */,
+				8489FF3F22018FC300D82A30 /* ChoseTasksController */,
 				8483B42E2200EDB700BE0C9A /* UIPickers */,
+				8489FF452201961F00D82A30 /* ManagerTableViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DFEDAA21F8E19700EFF834 /* LaunchScreen.storyboard in Resources */,
+				849F07DD22020E5C009680EE /* TasksTableViewCell.xib in Resources */,
 				84DFEDA721F8E19700EFF834 /* Assets.xcassets in Resources */,
 				84BCBC7621FF739B00164D30 /* DesignersTableViewCell.xib in Resources */,
 				84DFEDA221F8E19400EFF834 /* Main.storyboard in Resources */,
@@ -271,10 +327,12 @@
 				844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */,
 				84BCBC7C21FF841200164D30 /* DeveloperTableViewController.swift in Sources */,
 				8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */,
+				849F07DC22020E5C009680EE /* TasksTableViewCell.swift in Sources */,
 				844EBF3521FE21B100EEEF3D /* Developer+CoreDataClass.swift in Sources */,
 				84EC180421F9BBA60093F879 /* Task+CoreDataProperties.swift in Sources */,
 				84EC180621F9BBA60093F879 /* Employee+CoreDataProperties.swift in Sources */,
 				84EC180521F9BBA60093F879 /* Employee+CoreDataClass.swift in Sources */,
+				8489FF442201961900D82A30 /* ManagerTableViewController.swift in Sources */,
 				844EBF3321FE21B100EEEF3D /* Designer+CoreDataClass.swift in Sources */,
 				844EBF3721FE21B100EEEF3D /* Manager+CoreDataClass.swift in Sources */,
 				84A47A572200625E0015FB3E /* UIPickerForBoss.swift in Sources */,
@@ -283,6 +341,8 @@
 				84DFED9D21F8E19400EFF834 /* AppDelegate.swift in Sources */,
 				844EBF3821FE21B100EEEF3D /* Manager+CoreDataProperties.swift in Sources */,
 				844EBF3621FE21B100EEEF3D /* Developer+CoreDataProperties.swift in Sources */,
+				849F07DF2202182C009680EE /* AddTasksTableViewController.swift in Sources */,
+				8489FF41220190A000D82A30 /* DesignerTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

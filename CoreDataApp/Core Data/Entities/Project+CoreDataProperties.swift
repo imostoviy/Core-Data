@@ -2,7 +2,7 @@
 //  Project+CoreDataProperties.swift
 //  CoreDataApp
 //
-//  Created by Мостовий Ігор on 1/27/19.
+//  Created by Мостовий Ігор on 1/31/19.
 //  Copyright © 2019 Мостовий Ігор. All rights reserved.
 //
 //
@@ -17,7 +17,8 @@ extension Project {
         return NSFetchRequest<Project>(entityName: "Project")
     }
 
-    @NSManaged public var deadLine: NSDate?
+    @NSManaged public var deadLine: String?
+    @NSManaged public var projectName: String?
     @NSManaged public var tasks: NSSet?
 
 }

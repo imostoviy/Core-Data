@@ -24,6 +24,9 @@ class ManagerTableViewCell: UITableViewCell {
     @IBOutlet private weak var fullNAmeLabel: UILabel!
     @IBOutlet private weak var experienceLabel: UILabel!
     @IBOutlet private weak var customerLabel: UILabel!
+    @IBOutlet weak var tasksLabel: UILabel!
+    
+    static let reuseIdentifier = "ManagerTableViewCell"
     
     //MARK: publec properties
     var fullName: String? {
