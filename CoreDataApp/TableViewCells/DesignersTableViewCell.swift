@@ -26,12 +26,13 @@ class DesignersTableViewCell: UITableViewCell {
     @IBOutlet private weak var bossLabel: UILabel!
     
     //MARK: public properties
+    
     var fullName: String? {
         set {
             self.fullName = "Full name: " + (newValue ?? "")
         }
         get {
-            return self.fullName
+            return fullName
         }
     }
     var experience: String? {

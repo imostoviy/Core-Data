@@ -23,7 +23,7 @@
     <entity name="Project" representedClassName="Project" syncable="YES">
         <attribute name="deadLine" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,14 +31,14 @@
         <relationship name="designers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Designer" inverseName="mainTask" inverseEntity="Designer" syncable="YES"/>
         <relationship name="developers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Developer" inverseName="mainTask" inverseEntity="Developer" syncable="YES"/>
         <relationship name="manager" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manager" inverseName="tasks" inverseEntity="Manager" syncable="YES"/>
-        <relationship name="project" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
         <element name="Designer" positionX="-1737.79296875" positionY="-11391.8203125" width="128" height="73"/>
         <element name="Developer" positionX="-1770.4375" positionY="-11053.03515625" width="128" height="88"/>
         <element name="Employee" positionX="-1792.0703125" positionY="-11281.21484375" width="128" height="88"/>
         <element name="Manager" positionX="-1425.046875" positionY="-11051.96875" width="128" height="103"/>
-        <element name="Project" positionX="-1766.87109375" positionY="-10905.7265625" width="128" height="88"/>
-        <element name="Task" positionX="-2019.62109375" positionY="-11068.83984375" width="128" height="133"/>
+        <element name="Project" positionX="-1766.87109375" positionY="-10905.7265625" width="128" height="90"/>
+        <element name="Task" positionX="-2019.62109375" positionY="-11068.83984375" width="128" height="135"/>
     </elements>
 </model>

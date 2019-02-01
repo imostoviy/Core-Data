@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  CoreDataApp
 //
-//  Created by Мостовий Ігор on 1/27/19.
+//  Created by Мостовий Ігор on 1/31/19.
 //  Copyright © 2019 Мостовий Ігор. All rights reserved.
 //
 //
@@ -19,27 +19,10 @@ extension Task {
 
     @NSManaged public var status: String?
     @NSManaged public var taskName: String?
-    @NSManaged public var project: Project?
-    @NSManaged public var manager: Manager?
-    @NSManaged public var developers: NSSet?
     @NSManaged public var designers: NSSet?
-
-}
-
-// MARK: Generated accessors for developers
-extension Task {
-
-    @objc(addDevelopersObject:)
-    @NSManaged public func addToDevelopers(_ value: Developer)
-
-    @objc(removeDevelopersObject:)
-    @NSManaged public func removeFromDevelopers(_ value: Developer)
-
-    @objc(addDevelopers:)
-    @NSManaged public func addToDevelopers(_ values: NSSet)
-
-    @objc(removeDevelopers:)
-    @NSManaged public func removeFromDevelopers(_ values: NSSet)
+    @NSManaged public var developers: NSSet?
+    @NSManaged public var manager: Manager?
+    @NSManaged public var project: Project?
 
 }
 
@@ -57,5 +40,22 @@ extension Task {
 
     @objc(removeDesigners:)
     @NSManaged public func removeFromDesigners(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for developers
+extension Task {
+
+    @objc(addDevelopersObject:)
+    @NSManaged public func addToDevelopers(_ value: Developer)
+
+    @objc(removeDevelopersObject:)
+    @NSManaged public func removeFromDevelopers(_ value: Developer)
+
+    @objc(addDevelopers:)
+    @NSManaged public func addToDevelopers(_ values: NSSet)
+
+    @objc(removeDevelopers:)
+    @NSManaged public func removeFromDevelopers(_ values: NSSet)
 
 }
