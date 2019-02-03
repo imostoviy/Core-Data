@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8444F2A622031B6300F70AA7 /* CustomAddTasksUIInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */; };
-		8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */; };
+		8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputView.xib */; };
 		844EBF3321FE21B100EEEF3D /* Designer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2D21FE21B100EEEF3D /* Designer+CoreDataClass.swift */; };
 		844EBF3421FE21B100EEEF3D /* Designer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2E21FE21B100EEEF3D /* Designer+CoreDataProperties.swift */; };
 		844EBF3521FE21B100EEEF3D /* Developer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF2F21FE21B100EEEF3D /* Developer+CoreDataClass.swift */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddTasksUIInputView.swift; sourceTree = "<group>"; };
-		8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAddTasksUIInputViewViewController.xib; sourceTree = "<group>"; };
+		8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAddTasksUIInputView.xib; sourceTree = "<group>"; };
 		844EBF2D21FE21B100EEEF3D /* Designer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Designer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		844EBF2E21FE21B100EEEF3D /* Designer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Designer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		844EBF2F21FE21B100EEEF3D /* Developer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Developer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -98,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8435D6FD22077A890095DD1B /* ChooseTasksView */ = {
+			isa = PBXGroup;
+			children = (
+				8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */,
+				8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputView.xib */,
+			);
+			path = ChooseTasksView;
+			sourceTree = "<group>";
+		};
 		8483B42E2200EDB700BE0C9A /* UIPickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,8 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				849F07DE2202182C009680EE /* AddTasksTableViewController.swift */,
-				8444F2A422031B6300F70AA7 /* CustomAddTasksUIInputView.swift */,
-				8444F2A522031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib */,
 			);
 			path = AddTasksController;
 			sourceTree = "<group>";
@@ -200,6 +207,7 @@
 				84DFEDA021F8E19400EFF834 /* Main.storyboard */,
 				844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */,
 				84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */,
+				8435D6FD22077A890095DD1B /* ChooseTasksView */,
 				849F07E022023113009680EE /* AddTasksController */,
 				8489FF42220190DF00D82A30 /* DesignerTableViewController */,
 				8489FF3E22018F7F00D82A30 /* DeveloperTebleViewController */,
@@ -307,7 +315,7 @@
 			files = (
 				84DFEDAA21F8E19700EFF834 /* LaunchScreen.storyboard in Resources */,
 				849F07DD22020E5C009680EE /* TasksTableViewCell.xib in Resources */,
-				8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputViewViewController.xib in Resources */,
+				8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputView.xib in Resources */,
 				84DFEDA721F8E19700EFF834 /* Assets.xcassets in Resources */,
 				84BCBC7621FF739B00164D30 /* DesignersTableViewCell.xib in Resources */,
 				84DFEDA221F8E19400EFF834 /* Main.storyboard in Resources */,

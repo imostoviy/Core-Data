@@ -39,6 +39,7 @@ class ProjectsTableViewController: ParentTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.addTarget(self, action: #selector(self.addFunction), for: .touchUpInside)
+        addButton.titleLabel?.text = "+"
     }
     
     override func addFunction() {
@@ -57,10 +58,6 @@ class ProjectsTableViewController: ParentTableViewController {
             let object = Project(context: context)
             object.projectName = alert.textFields?.first?.text
             object.deadLine = alert.textFields?.last?.text
-            
-//            for task in tasks {
-//                object.addToTasks(task)
-//            }
             
             do {
                 try context.save()

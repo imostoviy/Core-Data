@@ -18,7 +18,6 @@ class DeveloperTableViewController: ParentTableViewController {
     //MARK: Private properties
     
     private var selectedTasks: [Task]?
-    var alert: UIAlertController?
     let cell = UINib(nibName: "DevelopersTableViewCell", bundle: nil)
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var fetchedResultsController: NSFetchedResultsController<Developer> = {
@@ -51,8 +50,7 @@ class DeveloperTableViewController: ParentTableViewController {
     //MARK: Function for adding values to Developer
     
     override func addFunction() {
-        alert = UIAlertController(title: "Add new", message: nil, preferredStyle: .alert)
-        guard let alert = alert else { return }
+        let alert = UIAlertController(title: "Add new", message: nil, preferredStyle: .alert)
         var selectedBoss: Manager?
         alert.addTextField { (textField) in
             textField.placeholder = "Name"
@@ -69,7 +67,17 @@ class DeveloperTableViewController: ParentTableViewController {
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Chose task"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchUpInside)
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            textField.inputView = inputView
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+                guard let tasks = tasks else { return }
+                switch tasks.count {
+                case 0: return
+                case 1: textField.text = tasks[0].taskName ?? ""
+                default: textField.text = tasks[0].taskName ?? "" + "..."
+                }
+            }
             
         }
         alert.addTextField { (textFied) in
@@ -90,18 +98,22 @@ class DeveloperTableViewController: ParentTableViewController {
             weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
-            guard let manager = selectedBoss else { return }
-            guard let tasks = self?.selectedTasks else { return }
+            guard let self = self else { return }
             
             let object = Developer(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
             object.anotherTask = alert.textFields?[3].text
-            object.boss = manager
-            
-            for task in tasks {
-                object.addToMainTask(task)
+            object.boss = selectedBoss
+            if self.selectedTasks?.count != 0 {
+                guard let tasks = self.selectedTasks else {
+                    try? context.save()
+                    return
+                }
+                for task in tasks {
+                    object.addToMainTask(task)
+                }
             }
             
             do {
@@ -113,54 +125,33 @@ class DeveloperTableViewController: ParentTableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: Function for handling data from tableviewController
-    @objc private func getChosenTasks(complection: ((UITextField) -> (Void))) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let taskTableViewController = storyboard.instantiateViewController(withIdentifier: TasksTableViewController.reuseIdentifier) as! TasksTableViewController
-        taskTableViewController.title = "Chose tasks"
-        navigationController?.pushViewController(taskTableViewController, animated: true)
-        taskTableViewController.complection = {(tasks) in
-            guard let tasks = tasks else { return }
-            self.selectedTasks = tasks
-            guard let alert = self.alert else {
-                return
-            }
-            var tasksString = ""
-            for task in tasks {
-                tasksString += (task.taskName ?? "") + "; "
-            }
-            alert.textFields?[4].text = tasksString
-        }
-    }
     
     //MARK: Functions for rows in table view
     
     private func editAction(indexPath: IndexPath) {
         guard let object = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
-        alert = UIAlertController(title: "Edit", message: nil, preferredStyle: .alert)
-        guard let alert = alert else { return }
+        let alert = UIAlertController(title: "Edit", message: nil, preferredStyle: .alert)
         var selectedBoss: Manager?
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Name"
             textField.text = object.name
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Surname"
             textField.text = object.surname
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "XP(Months)"
             textField.text = String(object.xp)
             textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Another project"
             textField.text = object.anotherTask
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Chose tasks"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchUpInside)
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            textField.inputView = inputView
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+            }
             
         }
         alert.addTextField { (textFied) in

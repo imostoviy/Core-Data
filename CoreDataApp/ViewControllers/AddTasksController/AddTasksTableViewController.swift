@@ -15,6 +15,9 @@ class AddTasksTableViewController: ParentTableViewController {
     
     var project: Project!
     var tasks: (([Task]?) -> (Void))?
+    let statusArray = ["High", "Medium", "Low"]
+    var selectedStatus: ((String?) -> (Void))?
+    static let identifier = "AddTasksTableView"
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var action = [
         UITableViewRowAction(style: .normal, title: "Delete") { [weak self] (_, indexPath) in
@@ -39,8 +42,8 @@ class AddTasksTableViewController: ParentTableViewController {
         }
         return controller
     }()
-    
-    static let identifier = "AddTasksTableView"
+
+    //MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +52,28 @@ class AddTasksTableViewController: ParentTableViewController {
         tableView.register(cell, forCellReuseIdentifier: TasksTableViewCell.reuseIdentifier)
     }
     
+    //MARK: function for closing UIView
+    
     @objc func done() {
         navigationController?.popViewController(animated: true)
         tasks?(fetchResultsController.fetchedObjects)
+    }
+    
+    //MARK: function for closing UIPicker
+    //MARK: Problem
+    @objc func closeUIPicker() {
+        view.endEditing(true)
+    }
+    
+    //MARK: func for creating toolBar
+    
+    func createToolBar() -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.closeUIPicker))
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        return toolBar
     }
     
     override func addFunction() {
@@ -61,6 +83,14 @@ class AddTasksTableViewController: ParentTableViewController {
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Status"
+            let picker = UIPickerView()
+            picker.dataSource = self
+            picker.delegate = self
+            textField.inputView = picker
+            textField.inputAccessoryView = self.createToolBar()
+            self.selectedStatus = { (status) in
+                textField.text = status
+            }
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak context] _ in
@@ -87,6 +117,7 @@ class AddTasksTableViewController: ParentTableViewController {
             debugPrint(error)
         }
     }
+    
 
 }
 
@@ -119,3 +150,25 @@ extension AddTasksTableViewController: NSFetchedResultsControllerDelegate {
         tableView.reloadData()
     }
 }
+
+//MARK: Extension UIPicker datasuorce and delegate
+
+extension AddTasksTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.statusArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return statusArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedStatus?(statusArray[row])
+    }
+    
+}
+
