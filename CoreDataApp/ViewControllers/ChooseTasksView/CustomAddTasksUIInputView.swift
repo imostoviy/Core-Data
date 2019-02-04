@@ -63,7 +63,7 @@ class CustomAddTasksUIInputView: UIInputView {
 
     @objc private func done() {
         selectedTasks?(tasks)
-        superview?.endEditing(true)
+        self.endEditing(true)
     }
 
 }

@@ -39,7 +39,7 @@ class ProjectsTableViewController: ParentTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addButton.addTarget(self, action: #selector(self.addFunction), for: .touchUpInside)
-        addButton.titleLabel?.text = "+"
+        addButton.titleLabel?.text = "Add"
     }
     
     override func addFunction() {

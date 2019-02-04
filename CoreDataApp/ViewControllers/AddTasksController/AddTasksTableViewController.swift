@@ -15,6 +15,7 @@ class AddTasksTableViewController: ParentTableViewController {
     
     var project: Project!
     var tasks: (([Task]?) -> (Void))?
+    var alert: ((UIAlertController) -> (Void))?
     let statusArray = ["High", "Medium", "Low"]
     var selectedStatus: ((String?) -> (Void))?
     static let identifier = "AddTasksTableView"
@@ -62,7 +63,10 @@ class AddTasksTableViewController: ParentTableViewController {
     //MARK: function for closing UIPicker
     //MARK: Problem
     @objc func closeUIPicker() {
-        view.endEditing(true)
+        alert = {(alert) in
+            alert.view.endEditing(true)
+            print("Done")
+        }
     }
     
     //MARK: func for creating toolBar
@@ -78,6 +82,7 @@ class AddTasksTableViewController: ParentTableViewController {
     
     override func addFunction() {
         let alert = UIAlertController(title: "Add", message: nil, preferredStyle: .alert)
+        self.alert?(alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Task name"
         }
