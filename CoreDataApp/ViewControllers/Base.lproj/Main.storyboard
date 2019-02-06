@@ -72,16 +72,16 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProjectsCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" id="wHd-sw-644">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wHd-sw-644" id="ZIv-YY-B0J">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wHd-sw-644" id="ZIv-YY-B0J">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6S-d4-27y" userLabel="Project Name">
                                             <rect key="frame" x="21" y="11" width="333" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="j9X-GQ-pQC"/>
+                                                <constraint firstAttribute="height" constant="25" id="cpj-BA-cTT"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -90,7 +90,6 @@
                                         <constraint firstItem="Y6S-d4-27y" firstAttribute="leading" secondItem="ZIv-YY-B0J" secondAttribute="leadingMargin" constant="5" id="EMU-oO-hUT"/>
                                         <constraint firstItem="Y6S-d4-27y" firstAttribute="top" secondItem="ZIv-YY-B0J" secondAttribute="topMargin" id="FdD-5Y-lcR"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Y6S-d4-27y" secondAttribute="trailing" constant="5" id="em3-gW-Evw"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Y6S-d4-27y" secondAttribute="bottom" id="q4d-nT-8q1"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

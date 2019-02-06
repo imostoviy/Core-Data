@@ -13,13 +13,14 @@ class ManagerTableViewController: ParentTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(cell, forCellReuseIdentifier: ManagerTableViewCell.reuseIdentifier)
     }
     
     //MARK: Private properties
     
     private var selectedTasks: [Task]?
     var alert: UIAlertController?
-    let cell = UINib(nibName: "DevelopersTableViewCell", bundle: nil)
+    let cell = UINib(nibName: "ManagerTableViewCell", bundle: nil)
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var fetchedResultsController: NSFetchedResultsController<Manager> = {
         let fetchRequest: NSFetchRequest<Manager> = Manager.fetchRequest()
@@ -40,13 +41,25 @@ class ManagerTableViewController: ParentTableViewController {
     }()
     
     private lazy var editActions = [
-        UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] (_, indexPath) in
-            self?.editAction(indexPath: indexPath)
-        }),
-        UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
-            self?.deleteAction(indexPath: indexPath)
-        })
+    UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
+    self?.deleteAction(indexPath: indexPath)
+    }),
+    UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] (_, indexPath) in
+        self?.editAction(indexPath: indexPath)
+    })
     ]
+    
+    //MARK: get array tasks from NSset
+    
+    private func getArray(indexPath: Int) -> [Task] {
+        let tasks = self.fetchedResultsController.fetchedObjects?[indexPath].tasks
+        var arrayForPassTasks: [Task] = []
+        guard let unvrapedTasks = tasks else { return arrayForPassTasks }
+        for task in unvrapedTasks {
+            arrayForPassTasks.append(task as! Task)
+        }
+        return arrayForPassTasks
+    }
     
     //MARK: Function for adding values to Developer
     
@@ -65,22 +78,45 @@ class ManagerTableViewController: ParentTableViewController {
             textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Chose task"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchUpInside)
-            
+            textField.placeholder = "Customer"
+        }
+        alert.addTextField { (textField) in
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            CustomAddTasksUIInputView.alert = self.alert
+            textField.placeholder = "Chose tasks"
+            textField.inputView = inputView
+            textField.text = nil
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+            }
+            inputView.tasksNames = {(tasksNames) in
+                guard let names = tasksNames else {
+                    textField.text = "Nothing to do"
+                    return
+                }
+                textField.text = names
+            }
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
             [weak context,
             weak self] _ in
             guard let context = context else { return }
-            guard let tasks = self?.selectedTasks else { return }
             
             let object = Manager(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
+            object.customer = alert.textFields?[3].text
+            
+            guard let tasks = self?.selectedTasks else {
+                do {
+                    try context.save()
+                } catch {
+                    debugPrint(error)
+                }
+                return
+            }
             for task in tasks {
                 object.addToTasks(task)
             }
@@ -91,27 +127,8 @@ class ManagerTableViewController: ParentTableViewController {
                 debugPrint(error)
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: Function for handling data from tableviewController
-    @objc private func getChosenTasks(complection: ((UITextField) -> (Void))) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let taskTableViewController = storyboard.instantiateViewController(withIdentifier: TasksTableViewController.reuseIdentifier) as! TasksTableViewController
-        taskTableViewController.title = "Chose tasks"
-        navigationController?.pushViewController(taskTableViewController, animated: true)
-        taskTableViewController.complection = {(tasks) in
-            guard let tasks = tasks else { return }
-            self.selectedTasks = tasks
-            guard let alert = self.alert else {
-                return
-            }
-            var tasksString = ""
-            for task in tasks {
-                tasksString += (task.taskName ?? "") + "; "
-            }
-            alert.textFields?[3].text = tasksString
-        }
     }
     
     //MARK: Functions for rows in table view
@@ -122,34 +139,54 @@ class ManagerTableViewController: ParentTableViewController {
         guard let alert = alert else { return }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Name"
             textField.text = object.name
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Surname"
             textField.text = object.surname
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "XP(Months)"
             textField.text = String(object.xp)
             textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Chose tasks"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchUpInside)
-            
+            textField.text = object.customer
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addTextField { (textField) in
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            CustomAddTasksUIInputView.alert = self.alert
+            textField.inputView = inputView
+            textField.text = nil
+            inputView.setTasks(tasks: self.getArray(indexPath: indexPath.row))
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+            }
+            inputView.tasksNames = {(tasksNames) in
+                guard let names = tasksNames else {
+                    textField.text = "Nothing to do"
+                    return
+                }
+                textField.text = names
+            }
+        }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             [weak context,
             weak self] _ in
             guard let context = context else { return }
-            guard let tasks = self?.selectedTasks else { return }
             
-            let object = Manager(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
+            object.customer = alert.textFields?[3].text
+            object.tasks = nil
+            
+            guard let tasks = self?.selectedTasks else {
+                do {
+                    try context.save()
+                } catch {
+                    debugPrint(error)
+                }
+                return
+            }
             for task in tasks {
                 object.addToTasks(task)
             }
@@ -160,6 +197,7 @@ class ManagerTableViewController: ParentTableViewController {
                 debugPrint(error)
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -196,8 +234,9 @@ extension ManagerTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ManagerTableViewCell.reuseIdentifier, for: indexPath) as! ManagerTableViewCell
         guard let object = fetchedResultsController.fetchedObjects?[indexPath.row] else { return cell}
-        cell.fullName = object.fullName
-        cell.experience = String(object.xp)
+        cell.fullNAmeLabel.text = object.fullName
+        cell.experienceLabel.text = String(object.xp)
+        cell.customerLabel.text = object.customer
         var tasksString = ""
         guard let tasks = object.tasks else { return cell }
         for task in tasks {
@@ -205,5 +244,9 @@ extension ManagerTableViewController {
         }
         cell.tasksLabel.text = tasksString
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return editActions
     }
 }

@@ -16,6 +16,7 @@
 		844EBF3721FE21B100EEEF3D /* Manager+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3121FE21B100EEEF3D /* Manager+CoreDataClass.swift */; };
 		844EBF3821FE21B100EEEF3D /* Manager+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3221FE21B100EEEF3D /* Manager+CoreDataProperties.swift */; };
 		844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */; };
+		845B0707220AEA2600A24D2F /* DevelopersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BCBC7121FF6FCB00164D30 /* DevelopersTableViewCell.xib */; };
 		8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42A2200C37600BE0C9A /* UIPickerForTask.swift */; };
 		8483B42D2200DF4F00BE0C9A /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8483B42C2200DF4F00BE0C9A /* TasksTableViewController.swift */; };
 		8489FF41220190A000D82A30 /* DesignerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489FF40220190A000D82A30 /* DesignerTableViewController.swift */; };
@@ -313,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845B0707220AEA2600A24D2F /* DevelopersTableViewCell.xib in Resources */,
 				84DFEDAA21F8E19700EFF834 /* LaunchScreen.storyboard in Resources */,
 				849F07DD22020E5C009680EE /* TasksTableViewCell.xib in Resources */,
 				8444F2A722031B6300F70AA7 /* CustomAddTasksUIInputView.xib in Resources */,

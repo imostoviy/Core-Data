@@ -21,36 +21,10 @@ class ManagerTableViewCell: UITableViewCell {
     
     //MARK: private outlets
     
-    @IBOutlet private weak var fullNAmeLabel: UILabel!
-    @IBOutlet private weak var experienceLabel: UILabel!
-    @IBOutlet private weak var customerLabel: UILabel!
+    @IBOutlet weak var fullNAmeLabel: UILabel!
+    @IBOutlet weak var experienceLabel: UILabel!
+    @IBOutlet weak var customerLabel: UILabel!
     @IBOutlet weak var tasksLabel: UILabel!
     
     static let reuseIdentifier = "ManagerTableViewCell"
-    
-    //MARK: publec properties
-    var fullName: String? {
-        set {
-            self.fullName = "Name: " + (newValue ?? "")
-        }
-        get {
-            return self.fullName
-        }
-    }
-    var experience: String? {
-        set {
-            self.experience = "XP(months)" + (newValue ?? "")
-        }
-        get {
-            return self.experience
-        }
-    }
-    var customer: String? {
-        set {
-            self.customer = "Customer " + (newValue ?? "")
-        }
-        get {
-            return self.customer
-        }
-    }
 }

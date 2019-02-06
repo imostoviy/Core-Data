@@ -59,9 +59,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bossLabel" destination="82J-4x-zlZ" id="dsT-cQ-1yp"/>
-                <outlet property="experience" destination="5b1-te-75Z" id="58O-3r-Ywf"/>
+                <outlet property="experienceLabel" destination="5b1-te-75Z" id="i0Y-Ob-V9e"/>
                 <outlet property="fullNameLabel" destination="rpW-M3-vAb" id="NlL-KN-Xru"/>
-                <outlet property="mainTask" destination="Ali-xQ-G9v" id="awl-kT-QxR"/>
+                <outlet property="mainTaskLabel" destination="Ali-xQ-G9v" id="P3x-h6-Gih"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="135.38230884557723"/>
         </tableViewCell>

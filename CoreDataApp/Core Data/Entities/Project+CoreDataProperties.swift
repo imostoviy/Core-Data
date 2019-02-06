@@ -2,7 +2,7 @@
 //  Project+CoreDataProperties.swift
 //  CoreDataApp
 //
-//  Created by Мостовий Ігор on 1/31/19.
+//  Created by Мостовий Ігор on 2/5/19.
 //  Copyright © 2019 Мостовий Ігор. All rights reserved.
 //
 //

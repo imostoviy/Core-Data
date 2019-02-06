@@ -14,13 +14,14 @@ class DesignerTableViewController: ParentTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFunction))
+        tableView.register(cell, forCellReuseIdentifier: DesignersTableViewCell.reuseIdentifier)
     }
     
     //MARK: Private properties
     
     private var selectedTasks: [Task]? = []
     var alert: UIAlertController?
-    let cell = UINib(nibName: "DevelopersTableViewCell", bundle: nil)
+    let cell = UINib(nibName: "DesignersTableViewCell", bundle: nil)
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var fetchedResultsController: NSFetchedResultsController<Designer> = {
         let fetchRequest: NSFetchRequest<Designer> = Designer.fetchRequest()
@@ -67,13 +68,29 @@ class DesignerTableViewController: ParentTableViewController {
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Chose task"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchDown)
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            CustomAddTasksUIInputView.alert = self.alert
+            textField.inputView = inputView
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+                guard let tasks = tasks else { return }
+                switch tasks.count {
+                case 0:
+                    textField.text = nil
+                    textField.placeholder = "chose tasks"
+                case 1: textField.text = tasks[0].taskName ?? ""
+                default: textField.text = tasks[0].taskName ?? "" + "..."
+                }
+            }
             
         }
         alert.addTextField { (textFied) in
             textFied.placeholder = "Chose boss"
             let inputView = UIPickerForBoss()
+            inputView.delegate = inputView
+            inputView.dataSource = inputView
             inputView.listOfObjects = Manager.fetchAll()
+            UIPickerForBoss.alert = alert
             textFied.inputView = inputView
             textFied.inputAccessoryView = inputView.createToolBar()
             inputView.selectedManager = {(boss) in
@@ -82,23 +99,26 @@ class DesignerTableViewController: ParentTableViewController {
                 selectedBoss = boss
             }
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
             [weak context,
             weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
-            guard let manager = selectedBoss else { return }
-            guard let tasks = self?.selectedTasks else { return }
+            guard let self = self else { return }
             
-            let object = Designer(context: context)
+            let object =  Designer(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
-            object.boss = manager
-            
-            for task in tasks {
-                object.addToMainTask(task)
+            object.boss = selectedBoss
+            if self.selectedTasks?.count != 0 {
+                guard let tasks = self.selectedTasks else {
+                    try? context.save()
+                    return
+                }
+                for task in tasks {
+                    object.addToMainTask(task)
+                }
             }
             
             do {
@@ -107,28 +127,10 @@ class DesignerTableViewController: ParentTableViewController {
                 debugPrint(error)
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: Function for handling data from tableviewController
-    @objc private func getChosenTasks(complection: ((UITextField) -> (Void))) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let taskTableViewController = storyboard.instantiateViewController(withIdentifier: TasksTableViewController.reuseIdentifier) as! TasksTableViewController
-        taskTableViewController.title = "Chose tasks"
-        navigationController?.pushViewController(taskTableViewController, animated: true)
-        taskTableViewController.complection = {(tasks) in
-            guard let tasks = tasks else { return }
-            self.selectedTasks = tasks
-            guard let alert = self.alert else {
-                return
-            }
-            var tasksString = ""
-            for task in tasks {
-                tasksString += (task.taskName ?? "") + "; "
-            }
-            alert.textFields?[3].text = tasksString
-        }
-    }
     
     //MARK: Functions for rows in table view
     
@@ -139,27 +141,29 @@ class DesignerTableViewController: ParentTableViewController {
         var selectedBoss: Manager?
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Name"
             textField.text = object.name
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Surname"
             textField.text = object.surname
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "XP(Months)"
             textField.text = String(object.xp)
             textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Chose tasks"
-            textField.addTarget(self, action: #selector(self.getChosenTasks), for: .touchUpInside)
+            let inputView = CustomAddTasksUIInputView.loadFromXib()
+            CustomAddTasksUIInputView.alert = alert
+            textField.inputView = inputView
+            inputView.selectedTasks = { (tasks) in
+                self.selectedTasks = tasks
+            }
             
         }
         alert.addTextField { (textFied) in
             textFied.placeholder = "Chose boss"
             textFied.text = object.boss?.fullName
             let inputView = UIPickerForBoss()
+            UIPickerForBoss.alert = alert
             inputView.listOfObjects = Manager.fetchAll()
             textFied.inputView = inputView
             textFied.inputAccessoryView = inputView.createToolBar()
@@ -169,31 +173,34 @@ class DesignerTableViewController: ParentTableViewController {
                 selectedBoss = boss
             }
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             [weak context,
             weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
-            guard let manager = selectedBoss else { return }
-            guard let tasks = self?.selectedTasks else { return }
+            guard let self = self else { return }
             
-            let object = Designer(context: context)
+            let object = Developer(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
-            object.boss = manager
-            
-            for task in tasks {
-                object.addToMainTask(task)
+            object.boss = selectedBoss
+            if self.selectedTasks?.count != 0 {
+                guard let tasks = self.selectedTasks else {
+                    try? context.save()
+                    return
+                }
+                for task in tasks {
+                    object.addToMainTask(task)
+                }
             }
-            
             do {
                 try context.save()
             } catch {
                 debugPrint(error)
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -228,17 +235,21 @@ extension DesignerTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DesignersTableViewCell.reuseIdentifier, for: indexPath) as! DevelopersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DesignersTableViewCell.reuseIdentifier, for: indexPath) as! DesignersTableViewCell
         guard let object = fetchedResultsController.fetchedObjects?[indexPath.row] else { return cell}
-        cell.fullName = object.fullName
-        cell.experience = String(object.xp)
-        cell.boss = object.boss?.fullName
+        cell.fullNameLabel.text = object.fullName
+        cell.experienceLabel.text = String(object.xp)
+        cell.bossLabel.text = object.boss?.fullName
         var tasksString = ""
         guard let tasks = object.mainTask else { return cell }
         for task in tasks {
             tasksString += ((task as! Task).taskName ?? "") + "; "
         }
-        cell.mainTask = tasksString
+        cell.mainTaskLabel.text = tasksString
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return editActions
     }
 }

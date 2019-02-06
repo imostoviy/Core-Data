@@ -11,8 +11,12 @@ import UIKit
 class UIPickerForBoss: UIPickerView {
     
     //Variable for UIPicker data source
+    
     var listOfObjects: [Manager]?
     var selectedManager: ((Manager?) -> (Void))?
+    static var alert: UIAlertController?
+    
+    
     
     //MARK: Function fot creating toolbar for Picker view
     func createToolBar() -> UIToolbar {
@@ -25,7 +29,7 @@ class UIPickerForBoss: UIPickerView {
     }
     
     @objc func dismissEditing() {
-        superview?.endEditing(true)
+        UIPickerForBoss.alert?.view.endEditing(true)
     }
     
 }

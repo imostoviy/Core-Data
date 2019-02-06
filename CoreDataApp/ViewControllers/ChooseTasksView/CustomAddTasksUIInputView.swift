@@ -28,7 +28,8 @@ class CustomAddTasksUIInputView: UIInputView {
         }
     }
 
-
+    //MARK: Load
+    
     class func loadFromXib() -> CustomAddTasksUIInputView {
         let nib = UINib(nibName: "CustomAddTasksUIInputView", bundle: nil)
         let view = nib.instantiate(withOwner: nil, options: nil).first as! CustomAddTasksUIInputView
@@ -37,9 +38,17 @@ class CustomAddTasksUIInputView: UIInputView {
 
     //MARK: Properties
 
-    private var tasks: [Task]?
+    private var tasks: [Task]? = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.convertToString()
+                self.selectRows()
+            }
+        }
+    }
     var selectedTasks: (([Task]?) -> (Void))?
-    var employee: String?
+    var tasksNames: ((String?) -> ())?
+    static var alert: UIAlertController?
     private lazy var context = CoreDataStack.shared.persistantContainer.viewContext
     private lazy var fetchResultsController: NSFetchedResultsController<Task> = {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
@@ -63,9 +72,46 @@ class CustomAddTasksUIInputView: UIInputView {
 
     @objc private func done() {
         selectedTasks?(tasks)
-        self.endEditing(true)
+        CustomAddTasksUIInputView.alert?.view.endEditing(true)
     }
-
+    
+    //MARK: publick set for tasks
+    
+    public func setTasks(tasks: [Task]?) {
+        self.tasks = tasks
+    }
+    
+    //MARK: Converting tasks names to one string and calling clousure
+    private func convertToString() {
+        guard let tasks = tasks else { return }
+        var names: [String?] = []
+        for task in tasks {
+            names.append(task.taskName)
+        }
+        var namesToPass: String = ""
+        for name in names {
+            if name == nil {
+                continue
+            } else {
+                namesToPass += name! + "; "
+            }
+        }
+        tasksNames?(namesToPass)
+    }
+    
+    //MARK: Select row for tasks
+    
+    private func selectRows() {
+        guard let tasks = tasks else { return }
+        guard let allTasks = fetchResultsController.fetchedObjects else { return }
+        for task in tasks {
+            if let index = allTasks.firstIndex(of: task) {
+                let indexPath = IndexPath(row: index, section: 0)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+            }
+        }
+    }
+    
 }
 
 //MARK: Extension NSFetchedResultsControllerDelegate
@@ -95,13 +141,18 @@ extension CustomAddTasksUIInputView: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let task = fetchResultsController.fetchedObjects?[indexPath.row] else { return }
-        tasks?.append(task)
+        guard let _ = tasks?.firstIndex(of: task) else {
+            tasks?.append(task)
+            convertToString()
+            return
+        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let task = fetchResultsController.fetchedObjects?[indexPath.row] else { return }
         if let index = tasks?.firstIndex(of: task) {
             tasks?.remove(at: index)
+            convertToString()
         }
     }
 }

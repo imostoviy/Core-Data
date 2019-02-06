@@ -53,7 +53,6 @@ class ProjectsTableViewController: ParentTableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak context] _ in
             guard let context = context else { return }
-            //guard let tasks = self.tasks else { return }
             
             let object = Project(context: context)
             object.projectName = alert.textFields?.first?.text
