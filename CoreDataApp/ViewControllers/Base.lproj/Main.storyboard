@@ -39,6 +39,7 @@
                     <connections>
                         <segue destination="Zdy-c5-lxQ" kind="relationship" relationship="viewControllers" id="YuO-sz-gCR"/>
                         <segue destination="1Yu-yC-nLS" kind="relationship" relationship="viewControllers" id="RhJ-bu-oAF"/>
+                        <segue destination="uib-rd-kAd" kind="relationship" relationship="viewControllers" id="Oen-7k-BCN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcM-l9-gEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -125,6 +126,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vK-49-tLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="862" y="-1152"/>
+        </scene>
+        <!--AnimationViewController-->
+        <scene sceneID="CYH-wL-3gc">
+            <objects>
+                <viewController storyboardIdentifier="AnimationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uib-rd-kAd" userLabel="AnimationViewController" customClass="AnimationViewController" customModule="CoreDataApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iLb-Hp-ZkV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hN9-tX-bZq">
+                                <rect key="frame" x="20" y="568" width="335" height="30"/>
+                                <state key="normal" title="Start animation"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hN9-tX-bZq" firstAttribute="leading" secondItem="f9L-g7-vJk" secondAttribute="leading" constant="20" id="3PO-y1-x9i"/>
+                            <constraint firstItem="f9L-g7-vJk" firstAttribute="trailing" secondItem="hN9-tX-bZq" secondAttribute="trailing" constant="20" id="RPO-bq-nfb"/>
+                            <constraint firstItem="f9L-g7-vJk" firstAttribute="bottom" secondItem="hN9-tX-bZq" secondAttribute="bottom" constant="20" id="Sqz-wC-fvw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f9L-g7-vJk"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Animation" id="AXr-HE-2az"/>
+                    <connections>
+                        <outlet property="startAnimationButton" destination="hN9-tX-bZq" id="UUO-Hr-Nbc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o29-WV-pZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-727" y="556"/>
         </scene>
         <!--Departments-->
         <scene sceneID="cG3-jr-Pll">
@@ -310,7 +341,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEJ-E4-gfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2897" y="340"/>
+            <point key="canvasLocation" x="2814" y="250"/>
         </scene>
         <!--Designers-->
         <scene sceneID="cdX-MQ-cSi">
