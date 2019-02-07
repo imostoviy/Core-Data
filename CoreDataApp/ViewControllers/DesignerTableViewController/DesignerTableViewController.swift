@@ -42,15 +42,27 @@ class DesignerTableViewController: ParentTableViewController {
     }()
     
     private lazy var editActions = [
-        UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] (_, indexPath) in
-            self?.editAction(indexPath: indexPath)
-        }),
         UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
             self?.deleteAction(indexPath: indexPath)
+        }),
+        UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] (_, indexPath) in
+            self?.editAction(indexPath: indexPath)
         })
     ]
     
-    //MARK: Function for adding values to Developer
+    //MARK: get array tasks from NSset
+    
+    private func getArray(indexPath: Int) -> [Task] {
+        let tasks = self.fetchedResultsController.fetchedObjects?[indexPath].mainTask
+        var arrayForPassTasks: [Task] = []
+        guard let unvrapedTasks = tasks else { return arrayForPassTasks }
+        for task in unvrapedTasks {
+            arrayForPassTasks.append(task as! Task)
+        }
+        return arrayForPassTasks
+    }
+    
+    //MARK: Function for adding values to designers
     
     override func addFunction() {
         alert = UIAlertController(title: "Add new", message: nil, preferredStyle: .alert)
@@ -67,30 +79,29 @@ class DesignerTableViewController: ParentTableViewController {
             textField.keyboardType = .numberPad
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Chose task"
             let inputView = CustomAddTasksUIInputView.loadFromXib()
             CustomAddTasksUIInputView.alert = self.alert
+            textField.placeholder = "Chose tasks"
             textField.inputView = inputView
+            textField.text = nil
             inputView.selectedTasks = { (tasks) in
                 self.selectedTasks = tasks
-                guard let tasks = tasks else { return }
-                switch tasks.count {
-                case 0:
-                    textField.text = nil
-                    textField.placeholder = "chose tasks"
-                case 1: textField.text = tasks[0].taskName ?? ""
-                default: textField.text = tasks[0].taskName ?? "" + "..."
-                }
             }
-            
+            inputView.tasksNames = {(tasksNames) in
+                guard let names = tasksNames else {
+                    textField.text = "Nothing to do"
+                    return
+                }
+                textField.text = names
+            }
         }
         alert.addTextField { (textFied) in
             textFied.placeholder = "Chose boss"
             let inputView = UIPickerForBoss()
-            inputView.delegate = inputView
-            inputView.dataSource = inputView
             inputView.listOfObjects = Manager.fetchAll()
             UIPickerForBoss.alert = alert
+            inputView.delegate = inputView
+            inputView.dataSource = inputView
             textFied.inputView = inputView
             textFied.inputAccessoryView = inputView.createToolBar()
             inputView.selectedManager = {(boss) in
@@ -101,7 +112,6 @@ class DesignerTableViewController: ParentTableViewController {
         }
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
             [weak context,
-            weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
             guard let self = self else { return }
@@ -111,14 +121,17 @@ class DesignerTableViewController: ParentTableViewController {
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
             object.boss = selectedBoss
-            if self.selectedTasks?.count != 0 {
-                guard let tasks = self.selectedTasks else {
-                    try? context.save()
-                    return
+
+            guard let tasks = self.selectedTasks else {
+                do {
+                    try context.save()
+                } catch {
+                    debugPrint(error)
                 }
-                for task in tasks {
-                    object.addToMainTask(task)
-                }
+                return
+            }
+            for task in tasks {
+                object.addToMainTask(task)
             }
             
             do {
@@ -152,12 +165,20 @@ class DesignerTableViewController: ParentTableViewController {
         }
         alert.addTextField { (textField) in
             let inputView = CustomAddTasksUIInputView.loadFromXib()
-            CustomAddTasksUIInputView.alert = alert
+            CustomAddTasksUIInputView.alert = self.alert
             textField.inputView = inputView
+            textField.text = nil
+            inputView.setTasks(tasks: self.getArray(indexPath: indexPath.row))
             inputView.selectedTasks = { (tasks) in
                 self.selectedTasks = tasks
             }
-            
+            inputView.tasksNames = {(tasksNames) in
+                guard let names = tasksNames else {
+                    textField.text = "Nothing to do"
+                    return
+                }
+                textField.text = names
+            }
         }
         alert.addTextField { (textFied) in
             textFied.placeholder = "Chose boss"
@@ -165,6 +186,8 @@ class DesignerTableViewController: ParentTableViewController {
             let inputView = UIPickerForBoss()
             UIPickerForBoss.alert = alert
             inputView.listOfObjects = Manager.fetchAll()
+            inputView.delegate = inputView
+            inputView.dataSource = inputView
             textFied.inputView = inputView
             textFied.inputAccessoryView = inputView.createToolBar()
             inputView.selectedManager = {(boss) in
@@ -175,25 +198,27 @@ class DesignerTableViewController: ParentTableViewController {
         }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             [weak context,
-            weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
             guard let self = self else { return }
             
-            let object = Developer(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
             object.boss = selectedBoss
-            if self.selectedTasks?.count != 0 {
-                guard let tasks = self.selectedTasks else {
-                    try? context.save()
-                    return
+            object.mainTask = nil
+            guard let tasks = self.selectedTasks else {
+                do {
+                    try context.save()
+                } catch {
+                    debugPrint(error)
                 }
-                for task in tasks {
-                    object.addToMainTask(task)
-                }
+                return
             }
+            for task in tasks {
+                object.addToMainTask(task)
+            }
+            
             do {
                 try context.save()
             } catch {

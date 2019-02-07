@@ -44,6 +44,8 @@
 		84EC180521F9BBA60093F879 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC17FF21F9BBA60093F879 /* Employee+CoreDataClass.swift */; };
 		84EC180621F9BBA60093F879 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC180021F9BBA60093F879 /* Employee+CoreDataProperties.swift */; };
 		84EC180A21F9BD920093F879 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EC180921F9BD920093F879 /* CoreDataStack.swift */; };
+		84EF8447220C55F20072B4C0 /* AllEmployesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF8446220C55F20072B4C0 /* AllEmployesTableViewController.swift */; };
+		84EF844B220C5DED0072B4C0 /* HighStatusTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF844A220C5DED0072B4C0 /* HighStatusTasksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		84EC17FF21F9BBA60093F879 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
 		84EC180021F9BBA60093F879 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		84EC180921F9BD920093F879 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		84EF8446220C55F20072B4C0 /* AllEmployesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEmployesTableViewController.swift; sourceTree = "<group>"; };
+		84EF844A220C5DED0072B4C0 /* HighStatusTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighStatusTasksTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +210,10 @@
 			children = (
 				84DFEDA821F8E19700EFF834 /* LaunchScreen.storyboard */,
 				84DFEDA021F8E19400EFF834 /* Main.storyboard */,
-				844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */,
-				84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */,
+				84EF844D220C685E0072B4C0 /* HighStatusTasksTableViewController */,
+				84EF844C220C68440072B4C0 /* ShowAllEmployesController */,
+				84EF8448220C55FC0072B4C0 /* ProjectTableViewController */,
+				84EF8449220C56130072B4C0 /* ParentTableViewController */,
 				8435D6FD22077A890095DD1B /* ChooseTasksView */,
 				849F07E022023113009680EE /* AddTasksController */,
 				8489FF42220190DF00D82A30 /* DesignerTableViewController */,
@@ -254,6 +260,38 @@
 				84EC180921F9BD920093F879 /* CoreDataStack.swift */,
 			);
 			path = "Core Data Stack";
+			sourceTree = "<group>";
+		};
+		84EF8448220C55FC0072B4C0 /* ProjectTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				844EBF3B21FE418F00EEEF3D /* ProjectsTableViewController.swift */,
+			);
+			path = ProjectTableViewController;
+			sourceTree = "<group>";
+		};
+		84EF8449220C56130072B4C0 /* ParentTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84BCBC6921FF58B700164D30 /* ParentTableViewController.swift */,
+			);
+			path = ParentTableViewController;
+			sourceTree = "<group>";
+		};
+		84EF844C220C68440072B4C0 /* ShowAllEmployesController */ = {
+			isa = PBXGroup;
+			children = (
+				84EF8446220C55F20072B4C0 /* AllEmployesTableViewController.swift */,
+			);
+			path = ShowAllEmployesController;
+			sourceTree = "<group>";
+		};
+		84EF844D220C685E0072B4C0 /* HighStatusTasksTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84EF844A220C5DED0072B4C0 /* HighStatusTasksTableViewController.swift */,
+			);
+			path = HighStatusTasksTableViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EF844B220C5DED0072B4C0 /* HighStatusTasksTableViewController.swift in Sources */,
 				84EC180121F9BBA60093F879 /* Project+CoreDataClass.swift in Sources */,
 				844EBF3421FE21B100EEEF3D /* Designer+CoreDataProperties.swift in Sources */,
 				84BCBC7521FF739B00164D30 /* DesignersTableViewCell.swift in Sources */,
@@ -343,6 +382,7 @@
 				84EC180221F9BBA60093F879 /* Project+CoreDataProperties.swift in Sources */,
 				84BCBC7221FF6FCB00164D30 /* DevelopersTableViewCell.swift in Sources */,
 				844EBF3C21FE418F00EEEF3D /* ProjectsTableViewController.swift in Sources */,
+				84EF8447220C55F20072B4C0 /* AllEmployesTableViewController.swift in Sources */,
 				84BCBC7C21FF841200164D30 /* DeveloperTableViewController.swift in Sources */,
 				8483B42B2200C37600BE0C9A /* UIPickerForTask.swift in Sources */,
 				849F07DC22020E5C009680EE /* TasksTableViewCell.swift in Sources */,

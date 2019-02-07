@@ -113,7 +113,6 @@ class DeveloperTableViewController: ParentTableViewController {
         }
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
             [weak context,
-            weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
             guard let self = self else { return }
@@ -191,6 +190,8 @@ class DeveloperTableViewController: ParentTableViewController {
             textFied.text = object.boss?.fullName
             let inputView = UIPickerForBoss()
             UIPickerForBoss.alert = alert
+            inputView.delegate = inputView
+            inputView.dataSource = inputView
             inputView.listOfObjects = Manager.fetchAll()
             textFied.inputView = inputView
             textFied.inputAccessoryView = inputView.createToolBar()
@@ -202,18 +203,15 @@ class DeveloperTableViewController: ParentTableViewController {
         }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             [weak context,
-            weak selectedBoss,
             weak self] _ in
             guard let context = context else { return }
             
-            
-            let object = Developer(context: context)
             object.name = alert.textFields?[0].text
             object.surname = alert.textFields?[1].text
             object.xp = Int32(alert.textFields?[2].text ?? "") ?? 0
             object.anotherTask = alert.textFields?[3].text
             object.boss = selectedBoss
-
+            object.mainTask = nil
             guard let tasks = self?.selectedTasks else {
                 do {
                     try context.save()

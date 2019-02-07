@@ -187,7 +187,7 @@
         <!--AllEmployees-->
         <scene sceneID="vmp-TE-b2l">
             <objects>
-                <tableViewController id="5s5-Jg-zz1" userLabel="AllEmployees" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AllEmployesTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5s5-Jg-zz1" userLabel="AllEmployees" customClass="AllEmployesTableViewController" customModule="CoreDataApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cSI-f5-7Yz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,6 +233,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZT-M1-cY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1962" y="-414"/>
+        </scene>
+        <!--High Status Tasks Table View Controller-->
+        <scene sceneID="KQD-yp-Lz6">
+            <objects>
+                <tableViewController storyboardIdentifier="HighStatusTasksController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d3c-pF-KVe" customClass="HighStatusTasksTableViewController" customModule="CoreDataApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ncv-95-blJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="d3c-pF-KVe" id="che-oy-Afr"/>
+                            <outlet property="delegate" destination="d3c-pF-KVe" id="N5S-yw-P5H"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AaB-cJ-U0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2814" y="-414"/>
         </scene>
         <!--Developers-->
         <scene sceneID="KZb-Ti-nC5">

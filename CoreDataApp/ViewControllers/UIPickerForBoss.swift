@@ -12,10 +12,18 @@ class UIPickerForBoss: UIPickerView {
     
     //Variable for UIPicker data source
     
-    var listOfObjects: [Manager]?
+    var listOfObjects: [Manager]? {
+        didSet {
+            DispatchQueue.main.async {
+                if self.listOfObjects == nil || self.listOfObjects?.count == 0 {
+                    return
+                }
+                self.selectedManager?(self.listOfObjects?.first)
+            }
+        }
+    }
     var selectedManager: ((Manager?) -> (Void))?
     static var alert: UIAlertController?
-    
     
     
     //MARK: Function fot creating toolbar for Picker view
